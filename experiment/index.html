@@ -551,40 +551,49 @@ timeline.push(trial_vol);
 
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
-//音の評価
-var audio_inst_2 = {
+//映像のみの評価
+            var videoonly_pr_inst_2 = {
             type: 'html-button-response',
-            stimulus: '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 100%;padding: 0% 2.5%;margin: 0% 2.5%;">'+
-            '<h2><p>音の評価</h2></p></div>' +
-            '<div style = "font-size: 18px; line-height:1.8em; text-align: left; width: 100%;padding: 0% 2.5%;margin: 0% 2.5%;"><hr><p>' +
-            'ありがとうございました。これ以降は音量を変えないでください。<br><br>これから短い音が流れます。音が流れているときにはマウスのクリックや画面のタッチを行わないでください。</p>'+
-            '短い音ですので聞き逃さないように注意してください。</p>'+
-            '<p>その後，印象を尋ねるアンケートが表れます。<br>たとえば次のような画面が表れます。</p>' +
-                '<center><img src = "pict/example.png" width = 80%"/></center><br>'+
-            '<p>この例では，音を聞いてあなたが感じた「明るい―――暗い」という印象を7段階で評価したときに，「やや暗い」印象であったことを表します。<br>もしあなたの印象が「非常に暗い」ものであったら一番右の○にマークをつけてください。<br>形容詞はいくつかありますが，いずれも悩まず，直感で回答してください。</p>' +    
-            '<p>それでははじめます。音は全部で２種類あります。</p><hr>' +
-            '<center><b>「開始」をクリックすると始まります。</b></center><hr></div>',
-                
+            stimulus: '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%;padding: 0% 2.5%;margin: 0% 2.5%;">'+
+            '<h2><p>映像の評価（音なし）</h2></p></div>' +
+            '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%;padding: 0% 2.5%;margin: 0% 2.5%;"><p>' +
+            '次は音ではなく，短い映像を見ていただきます。映像が流れているときにはマウスのクリックや画面のタッチを行わないでください。</p>'+
+            '<p>短い映像ですので見逃さないように注意してください。このとき，音は流れません。</p>'+
+            '<p>映像には，普通に流れるもの（順再生）と，逆回しで流れるもの（逆再生）があります。</p>'+
+            '<p>その後，印象を尋ねるアンケートが表れますので，すべての項目に回答してください。</p>' +
+            '<p>まずは練習を行います。練習は2回行います。</p>' +
+            '<hr><p><b>「開始」をクリックすると始まります。</b><hr></p></div>',
             choices: ['開始'],
             post_trial_gap:500
             };
-timeline.push(audio_inst_2);
+            timeline.push(videoonly_pr_inst_2);
             
-
-
-var otonomi = {
+var trial_procedure2 = {
 timeline: [
-    {type: 'audio-keyboard-response',
-     stimulus: jsPsych.timelineVariable('stimulus1'),
-     prompt: '<br><br>自動で次の画面に移ります',
-     choices: jsPsych.NO_KEYS,
-     trial_ends_after_audio: true,
-     post_trial_gap:0
+    {
+            type: 'video-keyboard-response',
+            sources: jsPsych.timelineVariable('sources1'),
+            choices: jsPsych.NO_KEYS,
+            margin_vertical: '10px',
+            margin_horizontal: '8px',
+            prompt: '<br><br>再生まで時間がかかる場合があります。<br>自動で次の画面に移ります',
+            width: 600,
+            //height: 600,
+            autoplay: true,
+            //controls: true,
+            //start: 8,
+            //stop: 9,
+            //rate: 1.5,
+            //trial_duration: 3000,
+            trial_ends_after_video: true,
+            post_trial_gap:500
     },
-    {type: 'survey-likert',
-     questions: [
-            {prompt: "<h3>以下の形容詞対のそれぞれついて，今聞いた音の印象を選んでください。<br>それぞれの形容詞対について７段階で評価してください。</h3><br>明るい―――暗い", name: '暗い', labels: ["&#8592;明るい","","","どちらでも<br>ない","","","暗い&#8594;"], required: true},
-            {prompt: "静かな―――動的な", name: '動的な', labels: ["&#8592;静かな","","","どちらでも<br>ない","","","動的な&#8594;"], required: true},
+{
+            type: 'survey-likert',
+            questions: [
+            {prompt: "<h3>以下の形容詞対のそれぞれついて，今みた映像の印象を選んでください。<br>それぞれの形容詞対について７段階で評価してください。</h3><br>順再生らしい―――逆再生らしい", name: '逆再生らしい', labels: ["&#8592;<br>順再生<br>らしい","","","どちらでも<br>ない","","","&#8594;<br>逆再生<br>らしい"], required: true},
+            {prompt: "明るい―――暗い", name: '暗い', labels: ["&#8592;明るい","","","どちらでも<br>ない","","","暗い&#8594;"], required: true},
+                {prompt: "静かな―――動的な", name: '動的な', labels: ["&#8592;静かな","","","どちらでも<br>ない","","","動的な&#8594;"], required: true},
             {prompt: "印象深い―――印象がうすい", name: '印象がうすい', labels: ["&#8592;印象深い","","","どちらでも<br>ない","","","印象がうすい&#8594;"], required: true},
             {prompt: "ありふれた―――ユニークな", name: 'ユニークな', labels: ["&#8592;ありふれた","","","どちらでも<br>ない","","","ユニークな&#8594;"], required: true},
             {prompt: "派手な―――地味な", name: '地味な', labels: ["&#8592;派手な","","","どちらでも<br>ない","","","地味な&#8594;"], required: true},
@@ -594,21 +603,25 @@ timeline: [
             {prompt: "面白い―――面白くない", name: '面白くない', labels: ["&#8592;面白い","","","どちらでも<br>ない","","","面白くない&#8594;"], required: true},
             {prompt: "明快な―――ぼんやりした", name: 'ぼんやりした', labels: ["&#8592;明快な","","","どちらでも<br>ない","","","ぼんやりした&#8594;"], required: true},
             {prompt: "幻想的な―――リアルな", name: 'リアルな', labels: ["&#8592;幻想的な","","","どちらでも<br>ない","","","リアルな&#8594;"], required: true},
-            {prompt: "好きな―――嫌いな", name: '嫌いな', labels: ["&#8592;好きな","","","どちらでも<br>ない","","","嫌いな&#8594;"], required: true},
-            ],
-     require_movement: true,
-     button_label: '次へ',
-     post_trial_gap:500
-     }],
+            {prompt: "好きな―――嫌いな", name: '嫌いな', labels: ["&#8592;好きな","","","どちらでも<br>ない","","","嫌いな&#8594;"], required: true},],
+            //scale_width:1000,
+            require_movement: true,
+            button_label: '次へ',
+            post_trial_gap:500
+            }
+],
 timeline_variables: [
-{stimulus1:['sound/increasing_sound.mp3']},
-{stimulus1:['sound/decreasing_sound.mp3']}
+  { sources1: ['video/pr1.mp4']},
+  { sources1: ['video/pr2.mp4']},
 ],
 repetitions: 1,
 randomize_order: true
 };
            
-timeline.push(otonomi);            
+       
+timeline.push(trial_procedure2);               
+
+          
            
 
 ///////////////////////////////////////////////////////////////////////////////////////
