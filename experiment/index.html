@@ -334,13 +334,17 @@ text-align: left;
 
 
 <script src="jspsych/jspsych.js"></script>
+<script src="jspsych/plugins/jspsych-instructions.js"></script>
 <script src="jspsych/plugins/jspsych-survey-html-form.js"></script>
 <script src="jspsych/css/jspsych-html-button-response-mk.js"></script>
+<script src="jspsych/plugins/jspsych-survey-likert.js"></script>
 <script src="jspsych/plugins/jspsych-audio-button-response.js"></script>
 <script src="jspsych/plugins/jspsych-video-button-response.js"></script>
 <script src="jspsych/plugins/jspsych-select-approval.js"></script>
 <script src="jspsych/plugins/jspsych-video-slider-response.js"></script>
 <script src="jspsych/plugins/jspsych-audio-keyboard-response.js"></script>
+<script src="jspsych/plugins/jspsych-video-keyboard-response.js"></script>
+<script src="jspsych/plugins/jspsych-survey-text-mk.js"></script>
 <script type="text/javascript">
 const timeline = [];
 
@@ -452,15 +456,15 @@ var audiotest_inst = {
             };
 timeline.push(audiotest_inst);
 
-<!-- var audiotest = { -->
-<!--             type: 'audio-button-response', -->
-<!--             stimulus: "sound/bgm.mp3", -->
-<!--             prompt: "<p>音が聞こえていたら「次へ」をクリックしてください。</p>", -->
-<!--             choices: ['次へ'], -->
-<!--             response_ends_trial: true, -->
-<!--             post_trial_gap:500 -->
-<!--             }; -->
-<!-- timeline.push(audiotest); -->
+var audiotest = {
+            type: 'audio-button-response',
+            stimulus: "sound/bgm.mp3",
+            prompt: "<p>音が聞こえていたら「次へ」をクリックしてください。</p>",
+            choices: ['次へ'],
+            response_ends_trial: true,
+            post_trial_gap:500
+            };
+timeline.push(audiotest);
 
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -486,7 +490,7 @@ var movietest = {
             type: 'video-button-response',
             sources: ['video/sample_movie.mp4'],
             choices: ['次へ'],
-            prompt: "<p>映像を見ることができ，音が聞こえていたら「次へ」をクリックしてください。</p>",
+            prompt: "<p>映像が流れるまで時間がかかることがあります。<br>映像を見ることができ，音が聞こえていたら「次へ」をクリックしてください。</p>",
             response_ends_trial: true,
             post_trial_gap:500,
             width:90
@@ -547,7 +551,7 @@ timeline.push(trial_vol);
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 //音の評価
-            var audio_inst_2 = {
+var audio_inst_2 = {
             type: 'html-button-response',
             stimulus: '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 100%;padding: 0% 2.5%;margin: 0% 2.5%;">'+
             '<h2><p>音の評価</h2></p></div>' +
@@ -565,13 +569,13 @@ timeline.push(trial_vol);
             };
 timeline.push(audio_inst_2);
             
-           // an array of paths to audio files that need to be loaded
+// an array of paths to audio files that need to be loaded
             var audio_stimuli = [
             {stimulus1:"sound/increasing_sound.mp3"},
             {stimulus1:"sound/decreasing_sound.mp3"}
             ];
             
-            var trial1 = {
+var trial1 = {
             type: 'audio-keyboard-response',
             stimulus: jsPsych.timelineVariable('stimulus1'),
             prompt: "<br><br><br>音を聴取してください。<br>自動で次の画面に移ります。",
@@ -580,7 +584,7 @@ timeline.push(audio_inst_2);
             post_trial_gap:0
             };
             
-            var stresponses = {
+var stresponses = {
             type: 'survey-likert',
             questions: [
             {prompt: "<h3>以下の形容詞対のそれぞれついて，今聞いた音の印象を選んでください。<br>それぞれの形容詞対について７段階で評価してください。</h3><br>明るい―――暗い", name: '暗い', labels: ["&#8592;明るい","","","どちらでも<br>ない","","","暗い&#8594;"], required: true},
@@ -602,13 +606,13 @@ timeline.push(audio_inst_2);
             };
             
             
-            var trial_procedure1 = {
+var trial_procedure1 = {
             timeline: [trial1,stresponses],
             timeline_variables: audio_stimuli,
             repetitions: 1,
             randomize_order: true
             };
-            timeline.push(trial_procedure1);
+timeline.push(trial_procedure1);
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 var audio = [
