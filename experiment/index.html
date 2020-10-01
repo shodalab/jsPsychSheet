@@ -333,6 +333,7 @@ text-align: left;
 
 
 
+<pre><code>## Warning: package 'htmltools' was built under R version 3.6.2</code></pre>
 <script src="jspsych/jspsych.js"></script>
 <script src="jspsych/plugins/jspsych-instructions.js"></script>
 <script src="jspsych/plugins/jspsych-survey-html-form.js"></script>
@@ -569,24 +570,19 @@ var audio_inst_2 = {
             };
 timeline.push(audio_inst_2);
             
-// an array of paths to audio files that need to be loaded
-            var audio_stimuli = [
-            {stimulus1:"sound/increasing_sound.mp3"},
-            {stimulus1:"sound/decreasing_sound.mp3"}
-            ];
-            
-var trial1 = {
-            type: 'audio-keyboard-response',
-            stimulus: jsPsych.timelineVariable('stimulus1'),
-            prompt: "<br><br><br>音を聴取してください。<br>自動で次の画面に移ります。",
-            choices: jsPsych.NO_KEYS,
-            trial_ends_after_audio: true,
-            post_trial_gap:0
-            };
-            
-var stresponses = {
-            type: 'survey-likert',
-            questions: [
+
+
+var otonomi = {
+timeline: [
+    {type: 'audio-keyboard-response',
+     stimulus: jsPsych.timelineVariable('stimulus1'),
+     prompt: '<br><br>自動で次の画面に移ります',
+     choices: jsPsych.NO_KEYS,
+     trial_ends_after_audio: true,
+     post_trial_gap:0
+    },
+    {type: 'survey-likert',
+     questions: [
             {prompt: "<h3>以下の形容詞対のそれぞれついて，今聞いた音の印象を選んでください。<br>それぞれの形容詞対について７段階で評価してください。</h3><br>明るい―――暗い", name: '暗い', labels: ["&#8592;明るい","","","どちらでも<br>ない","","","暗い&#8594;"], required: true},
             {prompt: "静かな―――動的な", name: '動的な', labels: ["&#8592;静かな","","","どちらでも<br>ない","","","動的な&#8594;"], required: true},
             {prompt: "印象深い―――印象がうすい", name: '印象がうすい', labels: ["&#8592;印象深い","","","どちらでも<br>ない","","","印象がうすい&#8594;"], required: true},
@@ -600,19 +596,21 @@ var stresponses = {
             {prompt: "幻想的な―――リアルな", name: 'リアルな', labels: ["&#8592;幻想的な","","","どちらでも<br>ない","","","リアルな&#8594;"], required: true},
             {prompt: "好きな―――嫌いな", name: '嫌いな', labels: ["&#8592;好きな","","","どちらでも<br>ない","","","嫌いな&#8594;"], required: true},
             ],
-            require_movement: true,
-            button_label: '次へ',
-            post_trial_gap:500
-            };
-            
-            
-var trial_procedure1 = {
-            timeline: [trial1,stresponses],
-            timeline_variables: audio_stimuli,
-            repetitions: 1,
-            randomize_order: true
-            };
-timeline.push(trial_procedure1);
+     require_movement: true,
+     button_label: '次へ',
+     post_trial_gap:500
+     }],
+timeline_variables: [
+{stimulus1:['sound/increasing_sound.mp3']},
+{stimulus1:['sound/decreasing_sound.mp3']}
+],
+repetitions: 1,
+randomize_order: true
+};
+           
+timeline.push(otonomi);            
+           
+
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 var audio = [
