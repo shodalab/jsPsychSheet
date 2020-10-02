@@ -126,7 +126,7 @@ jsPsych.plugins["video-button-response"] = (function() {
     video_html += '<video id="jspsych-video-button-response-stimulus"';
 
     if(trial.width) {
-      video_html += ' width="'+trial.width+'"';
+      video_html += ' width="'+trial.width+'"%';
     }
     if(trial.height) {
       video_html += ' height="'+trial.height+'"';

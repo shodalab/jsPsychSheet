@@ -16,18 +16,18 @@ knitr::opts_chunk$set(echo = FALSE)
 ```{r}
 library(htmltools)
 tagList(
-tags$script(src='jspsych/jspsych.js'),
-tags$script(src='jspsych/plugins/jspsych-instructions.js'),
-tags$script(src='jspsych/plugins/jspsych-survey-html-form.js'),
-tags$script(src='jspsych/css/jspsych-html-button-response-mk.js'),
-tags$script(src='jspsych/plugins/jspsych-survey-likert.js'),
-tags$script(src='jspsych/plugins/jspsych-audio-button-response.js'),
-tags$script(src='jspsych/plugins/jspsych-video-button-response.js'),
-tags$script(src='jspsych/plugins/jspsych-select-approval.js'),
-tags$script(src='jspsych/plugins/jspsych-video-slider-response.js'),
-tags$script(src='jspsych/plugins/jspsych-audio-keyboard-response.js'),
-tags$script(src='jspsych/plugins/jspsych-video-keyboard-response.js'),
-tags$script(src='jspsych/plugins/jspsych-survey-text-mk.js'),
+tags$script(src='https://shodalab.github.io/jsPsychSheet/jspsych/jspsych.js'),
+tags$script(src='https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-instructions.js'),
+tags$script(src='https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-survey-html-form.js'),
+tags$script(src='https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-html-button-response.js'),
+tags$script(src='https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-survey-likert.js'),
+tags$script(src='https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-audio-button-response.js'),
+tags$script(src='https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-video-button-response.js'),
+tags$script(src='https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-select-approval.js'),
+tags$script(src='https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-video-slider-response.js'),
+tags$script(src='https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-audio-keyboard-response.js'),
+tags$script(src='https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-video-keyboard-response.js'),
+tags$script(src='https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-survey-text-mk.js'),
 )
 ```
 
@@ -63,6 +63,70 @@ var ic1 = {
     };
     
 timeline.push(ic1);
+
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+//音が聞こえますか？
+var audiotest_inst = {
+            type: 'html-button-response',
+            stimulus: '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%; margin-left:10%;margin-right:10%;">'+
+            '<h2><p>あなたの環境で音が鳴るかどうかの確認</h2></p><hr>'+
+            '<p>この実験では音を聞く必要があります。あなたの環境で音を聞くことができるかを確認します。</p>'+
+            '<p>「次へ」をクリックすると音楽が流れます。あなたのパソコンやスマートフォンの音量をもっとも小さい状態にしておいて，だんだんと大きくしていってください。<br>'+
+            'もし音が聞こえない場合は，音量やイヤホン等をご確認ください。</p>'+
+            '<p>あるいは使用するブラウザーを変更してみてください。<br>'+
+            'Windowsの方はFirefox，Macの方はSafariを推奨します。<br>'+
+            'Android端末の方はGoogle Chromeを，iOSの方は____というアプリをインストールして試してみてください。</p><br>'+
+            '<p>それでも聞こえない場合には残念ながら実験に参加することができません。<br>'+
+            '正田悠（shoda（アット）people.kobe-u.ac.jp）にお問い合わせください</p>'+
+            '<hr><center>「開始」をクリックすると始まります。<br>音量に注意してください。</center></p><hr></div>',
+            choices: ['開始'],
+            timing_post_trial:500
+            };
+timeline.push(audiotest_inst);
+
+var audiotest = {
+            type: 'audio-button-response',
+            stimulus: "https://shodalab.github.io/jsPsychSheet/experiment/sound/bgm.mp3",
+            prompt: "<p>音が聞こえていたら「次へ」をクリックしてください。</p>",
+            choices: ['次へ'],
+            response_ends_trial: true,
+            post_trial_gap:500
+            };
+timeline.push(audiotest);
+
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+//映像OK？
+var movietest_inst = {
+            type: 'html-button-response',
+            stimulus: '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%; margin-left:10%;margin-right:10%;">'+
+            '<h2><p>あなたの環境で映像を見ることができるかどうかの確認</h2></p><hr>'+
+            '<p>次に映像を見ることができるかを確認します。</p>'+
+            '<p>この後，「次へ」をクリックすると映像が自動で流れます。<br>'+
+            '映像を見ることができないあるいは音が聞こえない場合は，使用するブラウザーを変更してみてください。<br>'+
+            'Windowsの方はFirefox，Macの方はSafariを推奨します。<br>'+
+            'Android端末の方はGoogle Chromeを，iOSの方は____というアプリをインストールして試してみてください。</p><br>'+
+            '<p>それでも映像を視聴できない場合には残念ながら実験に参加することができません。<br>'+
+            '正田悠（shoda（アット）people.kobe-u.ac.jp）にお問い合わせください</p>'+
+            '<hr><center>「開始」をクリックすると始まります。<br>音量に注意してください。</center></p><hr></div>',
+            choices: ['開始'],
+            timing_post_trial:500
+            };
+timeline.push(movietest_inst);
+
+var movietest = {
+            type: 'video-button-response',
+            sources: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sample_movie.mp4'],
+            choices: ['次へ'],
+            prompt: "<p>映像が流れるまで時間がかかることがあります。<br>映像を見ることができ，音が聞こえていたら「次へ」をクリックしてください。</p>",
+            response_ends_trial: true,
+            post_trial_gap:500,
+            width:90
+            }
+timeline.push(movietest);
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 //説明文書と同意書
@@ -120,71 +184,7 @@ const informedConsent = {
             button_label: '次へ' 
             };
             
-timeline.push(informedConsent);
-///////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////
-//音が聞こえますか？
-var audiotest_inst = {
-            type: 'html-button-response',
-            stimulus: '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%; margin-left:10%;margin-right:10%;">'+
-            '<h2><p>あなたの環境で音が鳴るかどうかの確認</h2></p><hr>'+
-            '<p>この実験では音を聞く必要があります。あなたの環境で音を聞くことができるかを確認します。</p>'+
-            '<p>この後，「次へ」をクリックすると音楽が流れます。音が聞こえるかどうかを確認してください。<br>'+
-            'もし音が聞こえない場合は，音量やイヤホン等をご確認ください。</p>'+
-            '<p>あるいは使用するブラウザーを変更してみてください。<br>'+
-            'Windowsの方はFirefox，Macの方はSafariを推奨します。<br>'+
-            'Android端末の方はGoogle Chromeを，iOSの方は____というアプリをインストールして試してみてください。</p><br>'+
-            '<p>それでも聞こえない場合には残念ながら実験に参加することができません。<br>'+
-            '正田悠（shoda（アット）people.kobe-u.ac.jp）にお問い合わせください</p>'+
-            '<hr><center>「開始」をクリックすると始まります。<br>音量に注意してください。</center></p><hr></div>',
-            choices: ['開始'],
-            timing_post_trial:500
-            };
-timeline.push(audiotest_inst);
-
-var audiotest = {
-            type: 'audio-button-response',
-            stimulus: "sound/bgm.mp3",
-            prompt: "<p>音が聞こえていたら「次へ」をクリックしてください。</p>",
-            choices: ['次へ'],
-            response_ends_trial: true,
-            post_trial_gap:500
-            };
-timeline.push(audiotest);
-
-///////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////
-//映像OK？
-var movietest_inst = {
-            type: 'html-button-response',
-            stimulus: '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%; margin-left:10%;margin-right:10%;">'+
-            '<h2><p>あなたの環境で映像を見ることができるかどうかの確認</h2></p><hr>'+
-            '<p>次に映像を見ることができるかを確認します。</p>'+
-            '<p>この後，「次へ」をクリックすると映像が自動で流れます。<br>'+
-            '映像を見ることができないあるいは音が聞こえない場合は，使用するブラウザーを変更してみてください。<br>'+
-            'Windowsの方はFirefox，Macの方はSafariを推奨します。<br>'+
-            'Android端末の方はGoogle Chromeを，iOSの方は____というアプリをインストールして試してみてください。</p><br>'+
-            '<p>それでも映像を視聴できない場合には残念ながら実験に参加することができません。<br>'+
-            '正田悠（shoda（アット）people.kobe-u.ac.jp）にお問い合わせください</p>'+
-            '<hr><center>「開始」をクリックすると始まります。<br>音量に注意してください。</center></p><hr></div>',
-            choices: ['開始'],
-            timing_post_trial:500
-            };
-timeline.push(movietest_inst);
-
-var movietest = {
-            type: 'video-button-response',
-            sources: ['video/sample_movie.mp4'],
-            choices: ['次へ'],
-            prompt: "<p>映像が流れるまで時間がかかることがあります。<br>映像を見ることができ，音が聞こえていたら「次へ」をクリックしてください。</p>",
-            response_ends_trial: true,
-            post_trial_gap:500,
-            width:90
-            }
-timeline.push(movietest);
-///////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////
-
+//timeline.push(informedConsent);
 //個人情報アンケート
             
 var PersonalInfo_0 = {
@@ -218,7 +218,7 @@ var volume_instruction = {
             };
 timeline.push(volume_instruction);
             
-var vol_stim = "sound/sound_check.mp3";
+var vol_stim = "https://shodalab.github.io/jsPsychSheet/experiment/sound/sound_check.mp3";
 var repNum = ["1回目の調節終了", "2回目の調節終了", "3回目の調節終了"];
             
 for (var i = 0; i < 3; i++){
@@ -234,6 +234,46 @@ for (var i = 0; i < 3; i++){
 timeline.push(trial_vol);
             };
 
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+var otonomi = {
+timeline_variables: [
+{sound1:'sound/increasing_sound.mp3'},
+{sound1:'sound/decreasing_sound.mp3'}
+],
+timeline: [
+    {type: 'audio-keyboard-response',
+     stimulus: jsPsych.timelineVariable('sound1'),
+     prompt: '<br><br>自動で次の画面に移ります',
+     choices: jsPsych.NO_KEYS,
+     trial_ends_after_audio: true,
+     post_trial_gap:0
+    },
+    {type: 'survey-likert',
+     questions: [
+            {prompt: "<h3>以下の形容詞対のそれぞれついて，今聞いた音の印象を選んでください。<br>それぞれの形容詞対について７段階で評価してください。</h3><br>明るい―――暗い", name: '暗い', labels: ["&#8592;明るい","","","どちらでも<br>ない","","","暗い&#8594;"], required: true},
+            {prompt: "静かな―――動的な", name: '動的な', labels: ["&#8592;静かな","","","どちらでも<br>ない","","","動的な&#8594;"], required: true},
+            {prompt: "印象深い―――印象がうすい", name: '印象がうすい', labels: ["&#8592;印象深い","","","どちらでも<br>ない","","","印象がうすい&#8594;"], required: true},
+            {prompt: "ありふれた―――ユニークな", name: 'ユニークな', labels: ["&#8592;ありふれた","","","どちらでも<br>ない","","","ユニークな&#8594;"], required: true},
+            {prompt: "派手な―――地味な", name: '地味な', labels: ["&#8592;派手な","","","どちらでも<br>ない","","","地味な&#8594;"], required: true},
+            {prompt: "ぼけた―――鮮やかな", name: '鮮やかな', labels: ["&#8592;ぼけた","","","どちらでも<br>ない","","","鮮やかな&#8594;"], required: true},
+            {prompt: "白熱した―――淡々とした", name: '淡々とした', labels: ["&#8592;白熱した","","","どちらでも<br>ない","","","淡々とした&#8594;"], required: true},
+            {prompt: "不思議でない―――不思議な", name: '不思議な', labels: ["&#8592;不思議でない","","","どちらでも<br>ない","","","不思議な&#8594;"], required: true},
+            {prompt: "面白い―――面白くない", name: '面白くない', labels: ["&#8592;面白い","","","どちらでも<br>ない","","","面白くない&#8594;"], required: true},
+            {prompt: "明快な―――ぼんやりした", name: 'ぼんやりした', labels: ["&#8592;明快な","","","どちらでも<br>ない","","","ぼんやりした&#8594;"], required: true},
+            {prompt: "幻想的な―――リアルな", name: 'リアルな', labels: ["&#8592;幻想的な","","","どちらでも<br>ない","","","リアルな&#8594;"], required: true},
+            {prompt: "好きな―――嫌いな", name: '嫌いな', labels: ["&#8592;好きな","","","どちらでも<br>ない","","","嫌いな&#8594;"], required: true},
+            ],
+     require_movement: true,
+     button_label: '次へ',
+     post_trial_gap:500
+     }],
+
+repetitions: 1,
+randomize_order: true
+};
+           
+timeline.push(otonomi);  
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 //映像のみの評価
@@ -296,8 +336,8 @@ timeline: [
             }
 ],
 timeline_variables: [
-  { sources1: ['video/pr1.mp4']},
-  { sources1: ['video/pr2.mp4']},
+  { sources1: ['https://shodalab.github.io/jsPsychSheet/experiment/video/pr1.mp4']},
+  { sources1: ['https://shodalab.github.io/jsPsychSheet/experiment/video/pr2.mp4']},
 ],
 repetitions: 1,
 randomize_order: true
@@ -312,17 +352,18 @@ timeline.push(trial_procedure2);
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 var audio = [
-    "sound/bgm.mp3", 
-    "sound/decreasing_sound.mp3", 
-    "sound/increasing_sound.mp3", 
-    "sound/sound_check.mp3"    
+    'https://shodalab.github.io/jsPsychSheet/experiment/sound/bgm.mp3', 
+    'https://shodalab.github.io/jsPsychSheet/experiment/sound/decreasing_sound.mp3', 
+    'https://shodalab.github.io/jsPsychSheet/experiment/sound/increasing_sound.mp3', 
+    'https://shodalab.github.io/jsPsychSheet/experiment/sound/sound_check.mp3'    
     ];
 
 jsPsych.init({
     timeline: timeline,
-    //preload_audio: audio,
+    preload_audio: audio,
+    use_webaudio: false,
     on_finish: function() {
-     jsPsych.data.displayData();
+     jsPsychSheet.uploadData(jsPsych.data.get().csv());;
     }
 });
 ```
