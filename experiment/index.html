@@ -336,11 +336,11 @@ text-align: left;
 <script src="https://shodalab.github.io/jsPsychSheet/jspsych/jspsych.js"></script>
 <script src="https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-instructions.js"></script>
 <script src="https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-survey-html-form.js"></script>
+<script src="https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-survey-multi-select.js"></script>
 <script src="https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-html-button-response.js"></script>
 <script src="https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-survey-likert.js"></script>
 <script src="https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-audio-button-response.js"></script>
 <script src="https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-video-button-response.js"></script>
-<script src="https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-select-approval.js"></script>
 <script src="https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-video-slider-response.js"></script>
 <script src="https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-audio-keyboard-response.js"></script>
 <script src="https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-video-keyboard-response.js"></script>
@@ -364,6 +364,7 @@ var ic1 = {
           '<li style = "text-align:left">授業で参加されている方は，<b>実験の最後に表示される記号を写真で撮る等，保存しておいてください</b>。</li></ul>'+
           '<p>実験は下記の手順で行います。</p>' +
           '<ul style = "text-align:center; display:inline-block; line-height:2em;">' +
+          '<li style = "text-align:left">音を聴くことができるか，映像を見ることができるかの確認（所要時間：3分）</li>'+
           '<li style = "text-align:left">実験参加に対する同意</li>'+
           '<li style = "text-align:left">年齢・性別に関する質問（所要時間：約3分）</li>'+
           '<li style = "text-align:left">効果音に対する印象評価（約5分）</li>'+
@@ -444,8 +445,15 @@ timeline.push(movietest);
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 //説明文書と同意書
-const informedConsentText = [
-            '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%; margin-left:10%;margin-right:10%;"><h2><p>実験の説明文書と実験参加に対する同意書</h2></p></div>'+
+var ic2 = {
+    type: 'survey-multi-select',
+    questions: [{
+        prompt: '<span style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%; margin-left:10%;margin-right:10%;"><b>以上の内容をよく読んで，理解した上で実験参加に同意いただける方はチェックをお願いします。同意されない方は，ウィンドウを閉じてください。</b></span>',
+        options: ['<span style = "font-size: 14pt">&emsp; 説明事項をよく読み，理解した上で，研究参加に同意します。</span>'],
+        required: true,
+        name: 'approval'
+    }],
+    preamble: '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%; margin-left:10%;margin-right:10%;"><h2><p>実験の説明文書と実験参加に対する同意書</h2></p></div>'+
             '<div style = "font-size: 18px; line-height:1.8em; text-align: left; width: 80%;padding: 0% 5%;margin: 0% 5%;">' +
             '<h3>研究課題名：映像と効果音の印象評価実験</h3>' +
             'この実験に参加するかしないかはあなたの自由です。下記の説明文書を読んだ上で，実験に参加することに同意される場合は<b>このページ下部のチェックボックスにチェックを入れてください。</b></p>' +
@@ -480,25 +488,12 @@ const informedConsentText = [
             '<p><h3><b>11．実験に対する問い合わせ</b></h3>' +
             '<p>神戸大学国際人間科学部グローバル文化学科&emsp;助教&emsp;正田悠（しょうだはるか）'+
             '<p>TEL:078-803-7423&emsp;&emsp;E-mail:shoda（アット）people.kobe-u.ac.jp'+
-            '<p>住所：神戸市灘区鶴甲１−２−１</p><br><hr><br>' +
-            '<b>上記事項をよく読み，理解した上で実験参加に同意いただける方は下記の真ん中の□にチェックをいれてください。'+
-            '同意されない方はこのままウィンドウを閉じて終了してください。</b></div>'
-            ];
+            '<p>住所：神戸市灘区鶴甲１−２−１</p><br><hr><br>',
+    button_label: '次へ'
+};
+
             
-//実験参加への同意チェックボックス周辺
-const informedConsent = {
-            type: 'select-approval',
-            questions: [{
-            prompt: '<p style="margin-bottom:-1.5em;"></p>',
-            options: ['<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%;padding: 0% 5%;margin: 0% 5%;">説明事項をよく読み，理解した上で，実験参加に同意します。</div><p style="margin-bottom:-1.5em;"></p>'],
-            required: true,
-            name: 'approval'
-            }],
-            preamble: informedConsentText,
-            button_label: '次へ' 
-            };
-            
-//timeline.push(informedConsent);
+timeline.push(ic2);
 //個人情報アンケート
             
 var PersonalInfo_0 = {
