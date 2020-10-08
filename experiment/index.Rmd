@@ -351,8 +351,8 @@ timeline: [
             }
 ],
 timeline_variables: [
-  { sources1: ['https://shodalab.github.io/jsPsychSheet/experiment/video/pr1.mp4']},
-  { sources1: ['https://shodalab.github.io/jsPsychSheet/experiment/video/pr2.mp4']},
+  { sources1: ['https://shodalab.github.io/jsPsychSheet/experiment/video/prvo1.mp4']},
+  { sources1: ['https://shodalab.github.io/jsPsychSheet/experiment/video/prvo2.mp4']},
 ],
 repetitions: 1,
 randomize_order: true
