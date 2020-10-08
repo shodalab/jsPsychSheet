@@ -107,7 +107,7 @@ jsPsych.plugins["video-keyboard-response"] = (function() {
     video_html += '<video id="jspsych-video-keyboard-response-stimulus"';
 
     if(trial.width) {
-      video_html += ' width="'+trial.width+'"';
+      video_html += ' width="'+trial.width+'%"';
     }
     if(trial.height) {
       video_html += ' height="'+trial.height+'"';
