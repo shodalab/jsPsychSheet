@@ -6,7 +6,7 @@ output:
     mathjax: null
     highlight: null
     theme: null
-    css: jspsych/css/jspsych-mk.css
+    css: https://shodalab.github.io/jsPsychSheet/jspsych/css/jspsych-mk.css
 ---
 
 ```{r setup, include=FALSE}
@@ -16,6 +16,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```{r}
 library(htmltools)
 tagList(
+tags$base(target="_top"),
 tags$script(src='https://shodalab.github.io/jsPsychSheet/jspsych/jspsych.js'),
 tags$script(src='https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-instructions.js'),
 tags$script(src='https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-survey-html-form.js'),
@@ -28,6 +29,12 @@ tags$script(src='https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych
 tags$script(src='https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-audio-keyboard-response.js'),
 tags$script(src='https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-video-keyboard-response.js'),
 tags$script(src='https://shodalab.github.io/jsPsychSheet/jspsych/plugins/jspsych-survey-text-mk.js'),
+tags$script(src='https://shodalab.github.io/jsPsychSheet/jspsychsheet.js'),
+# tags$link(rel="stylesheet" href="https://shodalab.github.io/jsPsychSheet/jspsychsheet.css"),
+# 
+# <!-- jsPsychSheet library -->
+# <script src="https://brain2ai.in/jsPsychSheet/jspsychsheet.js"></script>
+# <link rel="stylesheet" href="https://brain2ai.in/jsPsychSheet/jspsychsheet.css">
 )
 ```
 
@@ -47,7 +54,7 @@ var ic1 = {
           '<ul style = "text-align:center; display:inline-block; line-height:2em;">' +
           '<li style = "text-align:left">実験は，人によりますが概ね40分程度かかります。途中でやめると最初からやり直しになってしまいます。余裕のあるときに行ってください。</li>'+
           '<li style = "text-align:left">この実験では音と映像を使用します。実験をはじめる前に映像が流れるかの確認をしますので，映像および音声が流れるかご確認ください。</li>'+
-          '<li style = "text-align:left">可能な限りパソコンからご参加ください。Windowsの方はFirefox，Macの方はSafariが推奨環境です。<b>Google Chromeでは動作しません</b>のでご注意ください。</li>'+
+          '<li style = "text-align:left">可能な限りパソコンからご参加ください。Windowsの方はFirefox，Macの方はSafariが推奨環境です。</li>'+
           '<li style = "text-align:left">実験の途中でブラウザを閉じてしまうと最初からやり直しになってしまいます。実験の途中でブラウザを閉じないでください。</li>'+
           '<li style = "text-align:left">授業で参加されている方は，<b>実験の最後に表示される記号を写真で撮る等，保存しておいてください</b>。</li></ul>'+
           '<p>実験は下記の手順で行います。</p>' +
@@ -237,7 +244,7 @@ timeline.push(trial_vol);
             type: 'html-button-response',
             stimulus: '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%; margin-left:10%;margin-right:10%;">'+
             '<h2><p>音の評価</h2></p></div>' +
-            '<div style = "font-size: 18px; line-height:1.8em; text-align: left; width: 100%;padding: 0% 2.5%;margin: 0% 2.5%;"><hr><p>' +
+            '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%; margin-left:10%;margin-right:10%;"><hr><p>' +
             'ありがとうございました。これ以降は音量を変えないでください。<br><br>これから短い音が流れます。音が流れているときにはマウスのクリックや画面のタッチを行わないでください。</p>'+
             '短い音ですので聞き逃さないように注意してください。</p>'+
             '<p>その後，その音の印象を尋ねるアンケートが表れます。<br>たとえば次のような画面が表れます。</p>' +
@@ -294,9 +301,9 @@ timeline.push(otonomi);
 //映像のみの評価
             var videoonly_pr_inst_2 = {
             type: 'html-button-response',
-            stimulus: '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%;padding: 0% 2.5%;margin: 0% 2.5%;">'+
+            stimulus: '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%; margin-left:10%;margin-right:10%;">'+
             '<h2><p>映像の評価（音なし）</h2></p></div>' +
-            '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%;padding: 0% 2.5%;margin: 0% 2.5%;"><p>' +
+            '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%; margin-left:10%;margin-right:10%;"><p>' +
             '次は音ではなく，短い映像を見ていただきます。映像が流れているときにはマウスのクリックや画面のタッチを行わないでください。</p>'+
             '<p>短い映像ですので見逃さないように注意してください。このとき，音は流れません。</p>'+
             '<p>映像には，普通に流れるもの（順再生）と，逆回しで流れるもの（逆再生）があります。</p>'+
@@ -363,9 +370,9 @@ timeline.push(trial_procedure2);
 
           var videoonly_pr_inst_3 = {
             type: 'html-button-response',
-            stimulus: '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%;padding: 0% 2.5%;margin: 0% 2.5%;">'+
+            stimulus: '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%; margin-left:10%;margin-right:10%;">'+
             '<h2><p>映像の評価（音なし）</h2></p></div>' +
-            '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%;padding: 0% 2.5%;margin: 0% 2.5%;"><hr><p>' +
+            '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%; margin-left:10%;margin-right:10%;"><hr><p>' +
             'それでは本番です。<br><br>今度は12の映像をみてもらいます。<br>同じにみえる映像もあるかもしれませんが，すべて違う映像です。<br>少し多いですが最後までやっていただきますよう，お願いいたします。</p>' +
             '<hr><p><b>「開始」をクリックすると始まります。</b><hr></p></div>',
             choices: ['開始'],
@@ -439,6 +446,265 @@ timeline.push(trial_procedure3);
            
 
 ///////////////////////////////////////////////////////////////////////////////////////
+//映像＋音の評価
+            var videosound_pr_inst_2 = {
+            type: 'html-button-response',
+            stimulus: '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%; margin-left:10%;margin-right:10%;">'+
+            '<h2><p>映像と音の組み合わせの評価</h2></p></div>' +
+            '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%;padding: 0% 2.5%;margin: 0% 2.5%;"><p>' +
+            '次は音と映像が組み合わされた映像を見ていただきます。<br>映像が流れているときにはマウスのクリックや画面のタッチを行わないでください。</p>'+
+            '<p>短い映像ですので見逃さないように注意してください。</p>'+
+            
+            '<p>映像が流れた後，印象を尋ねるアンケートが表れますので，すべての項目に回答してください。</p>' +
+            '<p>まずは練習を行います。練習は2回行います。</p>' +
+            '<hr><p><b>「開始」をクリックすると始まります。</b><hr></p></div>',
+            choices: ['開始'],
+            post_trial_gap:500
+            };
+            timeline.push(videosound_pr_inst_2);
+            
+var trial_procedure22 = {
+timeline: [
+    {
+            type: 'video-keyboard-response',
+            sources: jsPsych.timelineVariable('sources11'),
+            choices: jsPsych.NO_KEYS,
+            margin_vertical: '10px',
+            margin_horizontal: '8px',
+            prompt: '<br><br>自動で次の画面に移ります',
+            width: 600,
+            //height: 600,
+            autoplay: true,
+            //controls: true,
+            //start: 8,
+            //stop: 9,
+            //rate: 1.5,
+            //trial_duration: 3000,
+            trial_ends_after_video: true,
+            post_trial_gap:500
+    },
+{
+            type: 'survey-likert',
+            questions: [
+{prompt: "<h3>以下の形容詞対のそれぞれついて，今みた映像の印象を選んでください。<br>それぞれの形容詞対について７段階で評価してください。</h3><br>調和した―――調和していない", name: '調和していない', labels: ["&#8592;<br>調和した","","","どちらでも<br>ない","","","&#8594;<br>調和<br>していない"], required: true},
+                {prompt: "順再生らしい―――逆再生らしい", name: '逆再生らしい', labels: ["&#8592;<br>順再生<br>らしい","","","どちらでも<br>ない","","","&#8594;<br>逆再生<br>らしい"], required: true},
+            {prompt: "明るい―――暗い", name: '暗い', labels: ["&#8592;明るい","","","どちらでも<br>ない","","","暗い&#8594;"], required: true},
+                {prompt: "静かな―――動的な", name: '動的な', labels: ["&#8592;静かな","","","どちらでも<br>ない","","","動的な&#8594;"], required: true},
+            {prompt: "印象深い―――印象がうすい", name: '印象がうすい', labels: ["&#8592;印象深い","","","どちらでも<br>ない","","","印象がうすい&#8594;"], required: true},
+            {prompt: "ありふれた―――ユニークな", name: 'ユニークな', labels: ["&#8592;ありふれた","","","どちらでも<br>ない","","","ユニークな&#8594;"], required: true},
+            {prompt: "派手な―――地味な", name: '地味な', labels: ["&#8592;派手な","","","どちらでも<br>ない","","","地味な&#8594;"], required: true},
+            {prompt: "ぼけた―――鮮やかな", name: '鮮やかな', labels: ["&#8592;ぼけた","","","どちらでも<br>ない","","","鮮やかな&#8594;"], required: true},
+            {prompt: "白熱した―――淡々とした", name: '淡々とした', labels: ["&#8592;白熱した","","","どちらでも<br>ない","","","淡々とした&#8594;"], required: true},
+            {prompt: "不思議でない―――不思議な", name: '不思議な', labels: ["&#8592;不思議でない","","","どちらでも<br>ない","","","不思議な&#8594;"], required: true},
+            {prompt: "面白い―――面白くない", name: '面白くない', labels: ["&#8592;面白い","","","どちらでも<br>ない","","","面白くない&#8594;"], required: true},
+            {prompt: "明快な―――ぼんやりした", name: 'ぼんやりした', labels: ["&#8592;明快な","","","どちらでも<br>ない","","","ぼんやりした&#8594;"], required: true},
+            {prompt: "幻想的な―――リアルな", name: 'リアルな', labels: ["&#8592;幻想的な","","","どちらでも<br>ない","","","リアルな&#8594;"], required: true},
+            {prompt: "好きな―――嫌いな", name: '嫌いな', labels: ["&#8592;好きな","","","どちらでも<br>ない","","","嫌いな&#8594;"], required: true},
+            ],
+            //scale_width:1000,
+            require_movement: true,
+            button_label: '次へ',
+            post_trial_gap:500
+            }
+],
+timeline_variables: [
+  { sources11: ['https://shodalab.github.io/jsPsychSheet/experiment/video/svpr1.mp4']},
+  { sources11: ['https://shodalab.github.io/jsPsychSheet/experiment/video/svpr2.mp4']},
+  { sources11: ['https://shodalab.github.io/jsPsychSheet/experiment/video/svpr3.mp4']},
+  { sources11: ['https://shodalab.github.io/jsPsychSheet/experiment/video/svpr4.mp4']},
+],
+repetitions: 1,
+randomize_order: true
+};
+           
+       
+timeline.push(trial_procedure22);               
+
+           
+            var video_inst_3 = {
+            type: 'html-button-response',
+            stimulus: '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%; margin-left:10%;margin-right:10%;">'+
+            '<h2><p>映像と音の組み合わせの評価</h2></p></div>' +
+            '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%; margin-left:10%;margin-right:10%;"><p>' +
+'それでは本番です。<br><br>今度は24の映像をみてもらいます。<br>同じにみえる映像もあるかもしれませんが，すべて違う映像です。<br>かなり多いですが最後までやっていただかないと，意味のあるデータとして用いることができません。<br>ご協力をよろしくお願いいたします。</p></div>',
+            choices: ['開始'],
+            post_trial_gap:500
+            };
+timeline.push(video_inst_3);
+            
+var trial_procedure33 = {
+timeline: [
+    {
+            type: 'video-keyboard-response',
+            sources: jsPsych.timelineVariable('sources22'),
+            choices: jsPsych.NO_KEYS,
+            margin_vertical: '10px',
+            margin_horizontal: '8px',
+            prompt: '<br><br>自動で次の画面に移ります',
+            width: 600,
+            //height: 600,
+            autoplay: true,
+            //controls: true,
+            //start: 8,
+            //stop: 9,
+            //rate: 1.5,
+            //trial_duration: 3000,
+            trial_ends_after_video: true,
+            post_trial_gap:500
+    },
+{
+            type: 'survey-likert',
+            questions: [
+            {prompt: "<h3>以下の形容詞対のそれぞれついて，今みた映像の印象を選んでください。<br>それぞれの形容詞対について７段階で評価してください。</h3><br>調和した―――調和していない", name: '調和していない', labels: ["&#8592;<br>調和した","","","どちらでも<br>ない","","","&#8594;<br>調和<br>していない"], required: true},
+                {prompt: "順再生らしい―――逆再生らしい", name: '逆再生らしい', labels: ["&#8592;<br>順再生<br>らしい","","","どちらでも<br>ない","","","&#8594;<br>逆再生<br>らしい"], required: true},
+            {prompt: "明るい―――暗い", name: '暗い', labels: ["&#8592;明るい","","","どちらでも<br>ない","","","暗い&#8594;"], required: true},
+                {prompt: "静かな―――動的な", name: '動的な', labels: ["&#8592;静かな","","","どちらでも<br>ない","","","動的な&#8594;"], required: true},
+            {prompt: "印象深い―――印象がうすい", name: '印象がうすい', labels: ["&#8592;印象深い","","","どちらでも<br>ない","","","印象がうすい&#8594;"], required: true},
+            {prompt: "ありふれた―――ユニークな", name: 'ユニークな', labels: ["&#8592;ありふれた","","","どちらでも<br>ない","","","ユニークな&#8594;"], required: true},
+            {prompt: "派手な―――地味な", name: '地味な', labels: ["&#8592;派手な","","","どちらでも<br>ない","","","地味な&#8594;"], required: true},
+            {prompt: "ぼけた―――鮮やかな", name: '鮮やかな', labels: ["&#8592;ぼけた","","","どちらでも<br>ない","","","鮮やかな&#8594;"], required: true},
+            {prompt: "白熱した―――淡々とした", name: '淡々とした', labels: ["&#8592;白熱した","","","どちらでも<br>ない","","","淡々とした&#8594;"], required: true},
+            {prompt: "不思議でない―――不思議な", name: '不思議な', labels: ["&#8592;不思議でない","","","どちらでも<br>ない","","","不思議な&#8594;"], required: true},
+            {prompt: "面白い―――面白くない", name: '面白くない', labels: ["&#8592;面白い","","","どちらでも<br>ない","","","面白くない&#8594;"], required: true},
+            {prompt: "明快な―――ぼんやりした", name: 'ぼんやりした', labels: ["&#8592;明快な","","","どちらでも<br>ない","","","ぼんやりした&#8594;"], required: true},
+            {prompt: "幻想的な―――リアルな", name: 'リアルな', labels: ["&#8592;幻想的な","","","どちらでも<br>ない","","","リアルな&#8594;"], required: true},
+            {prompt: "好きな―――嫌いな", name: '嫌いな', labels: ["&#8592;好きな","","","どちらでも<br>ない","","","嫌いな&#8594;"], required: true},
+                        ],
+            //scale_width:1000,
+            require_movement: true,
+            button_label: '次へ',
+            post_trial_gap:500
+            }
+],
+timeline_variables: [
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv1.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv2.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv3.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv4.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv5.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv6.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv7.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv8.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv9.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv10.mp4']},
+    { sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv11.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv12.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv13.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv14.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv15.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv16.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv17.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv18.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv19.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv20.mp4']},
+    { sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv21.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv22.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv23.mp4']},
+{ sources22: ['https://shodalab.github.io/jsPsychSheet/experiment/video/sv24.mp4']},
+],
+repetitions: 1,
+randomize_order: true
+};
+           
+       
+timeline.push(trial_procedure33);            
+
+
+
+//視覚的イメージスタイル質問紙（VISQ）
+
+var scale_visq = ["1．全く当てはまらない", "2","3","4","5．よく当てはまる"];
+var visq = {
+    type: 'survey-likert',
+    preamble: '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%; margin-left:10%;margin-right:10%;"><h2><p>あなた自身について</h2></p><hr>' +
+                '<p>お疲れ様でした。最後に，下記の文章のそれぞれについて，<b>「全く当てはまらない」から「よく当てはまる」までの5段階</b>で評価してください。自分自身に当てはまるかところをマークしてください。悩まず，直感で答えてください。</p><hr><br><br></div>',
+    questions:[
+        {prompt: "知らないところに行っても東西南北をあまり間違えない", name: 'visq1', labels: scale_visq, required: true},
+        {prompt: "ルービックキューブのような空間的なゲームが得意である", name: 'visq2', labels: scale_visq, required: true},
+        {prompt: "考え事をするとき、絵や映像的なイメージを使うことが多い", name: 'visq3', labels: scale_visq, required: true},
+        {prompt: "私のイメージは非常にカラフルで、鮮やかである", name: 'visq4', labels: scale_visq, required: true},
+        {prompt: "想起したイメージがあまりに鮮明なためにそれを無視することが難しいときがある", name: 'visq5', labels: scale_visq, required: true},
+        {prompt: "人の体験談を聞いているとき、私はときどきその状況を生き生きと想像している自分に気づくことがある", name: 'visq6', labels: scale_visq, required: true},
+        {prompt: "地理や歴史を学ぶ際には、情景のイメージをよく思い浮かべる", name: 'visq7', labels: scale_visq, required: true},
+        {prompt: "日常生活のなかで、いつも映像的なイメージが浮かんでいる", name: 'visq8', labels: scale_visq, required: true},
+        {prompt: "建物の見取り図や平面図を描くことが得意である", name: 'visq9', labels: scale_visq, required: true},
+        {prompt: "一度目にした絵画や写真、テレビや映画などのイメージがいつまでも頭の中に残っている", name: 'visq10', labels: scale_visq, required: true},
+        {prompt: "頭の中で立体の図形を簡単にイメージしたり、回転させたりすることができる", name: 'visq11', labels: scale_visq, required: true},
+        {prompt: "写真のように鮮明な記憶を持っている", name: 'visq12', labels: scale_visq, required: true},
+        {prompt: "ホテルや旅館の部屋に入るとその部屋がどちら向きの部屋になっているのかわからなくなる", name: 'visq13', labels: scale_visq, required: true},
+        {prompt: "立体の2次元平面図や建物の設計図を描くのが得意である", name: 'visq14', labels: scale_visq, required: true},
+        {prompt: "言葉で目的地までの行き方を教えてもらえば、目的地までの正しい道筋が分かる", name: 'visq15', labels: scale_visq, required: true},
+        {prompt: "映像的なイメージを思い浮かべながら本を読むことが多い", name: 'visq16', labels: scale_visq, required: true},
+        {prompt: "目を閉じると過去に経験した光景を容易に思い出すことができる", name: 'visq17', labels: scale_visq, required: true},
+        {prompt: "ラジオのアナウンサーやDJが話すのを聞いているとき、いつもその背景や様子を具体的に思い浮かべている自分に気づく", name: 'visq18', labels: scale_visq, required: true},
+        {prompt: "感覚的に北がどちらかわかる", name: 'visq19', labels: scale_visq, required: true},
+        {prompt: "3次元的な立体図形を描くのが得意である", name: 'visq20', labels: scale_visq, required: true},
+        {prompt: "道を曲がるところでいちいち目印を確認しなくても目的地に行ける", name: 'visq21', labels: scale_visq, required: true},
+        {prompt: "私が思い浮かべる視覚的イメージは、実際に見たことのある物の大きさ、形、色とほとんど同じである", name: 'visq22', labels: scale_visq, required: true},
+        {prompt: "車で右折左折を繰り返して目的地に着いたとき、帰り道はどこでどう曲がったらよいかわからなくなる", name: 'visq23', labels: scale_visq, required: true},
+        {prompt: "カラフルな絵や写真の多い本よりも、グラフや表・モデル図の多い本の方が好きである", name: 'visq24', labels: scale_visq, required: true},
+        ],
+        button_label: '次へ',
+    randomize_question_order: true,
+};
+timeline.push(visq);
+
+//実験終了のお知らせ
+            
+            /*ID(日付時刻_８桁の乱数)の設定*/
+            // 乱数
+            var l = 6;
+            var c = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var cl = c.length;
+            var r_num = "";
+            for(var i=0; i<l; i++){
+            r_num += c[Math.floor(Math.random()*cl)];
+            }
+            // 日付時刻
+            var time_date= new Date();
+            var year = time_date.getFullYear();
+            var month = time_date.getMonth()+1;
+            var date = time_date.getDate();
+            var hour = time_date.getHours();
+            var minute = time_date.getMinutes();
+            var second = time_date.getSeconds();
+            // ID
+            var exp_id = year +'_'+ month +'_'+ date +'_'+ hour +'_'+ minute +'_'+ second +'_' + r_num;
+            var exp_id2 = month +'_'+ date +'_'+ hour +'_' + r_num;
+            var trial_types = [
+            {id1: exp_id},
+            {id2: exp_id2},
+            ];
+            
+
+            var kansou = {
+            type: 'survey-html-form',
+            preamble: '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%; margin-left:10%;margin-right:10%;"><h1><p>感想の入力</h1></p></div><br>',
+            html: 
+            '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%; margin-left:10%;margin-right:10%;">'+
+            '<p style = "font-weight:bold">本実験について感想があれば，記入をお願いします</p>'+
+            '<br>&emsp;<input name="instrumentage" type="text" /><br><br></p>'+
+            '<br><br></div>',
+button_label: '次へ'
+};
+timeline.push(kansou);
+
+
+            var close_exp = {
+            type: 'html-button-response',
+            stimulus: '<img src = "https://shodalab.github.io/jsPsychSheet/experiment/pict/thanks.png" width = 50%"/>'+
+            '<div style = "font-size: 18px; line-height:1.8em; text-align: center; width: 80%; margin-left:10%;margin-right:10%;">'+
+    '<h3><p>こちらで実験は終了です。長い時間のご参加ありがとうございました。<br>下記の番号をメモしておくか写真に撮って保管しておいてください。実験完了の証明になります。</p></h3>' +
+            exp_id2+
+            '<br><p>最後に必ず「データ送信」ボタンを押してください。</p>'+
+            '<p>（そうしないとこれまでの課題のデータがサーバーに送信されません）</p>'+
+            '<p>画面が真っ白になったら送信完了となりますので，画面を閉じていただいて構いません。<br>　<br>最後になりますが，この実験の内容はSNS等にアップしないようにお願いいたします。本研究の知的財産を守るため，ご協力をお願いいたします。</p>'+
+            '</div><br>　<br>',
+            choices: ['データ送信']
+            };
+            
+            timeline.push(close_exp);
+
 ///////////////////////////////////////////////////////////////////////////////////////
 var audio = [
     'https://shodalab.github.io/jsPsychSheet/experiment/sound/bgm.mp3', 
@@ -494,7 +760,7 @@ var video = [
 jsPsych.init({
     timeline: timeline,
     preload_audio: audio,
-    preload_video: video,
+    <!-- preload_video: video, -->
     use_webaudio: false,
     on_finish: function() {
      jsPsychSheet.uploadData(jsPsych.data.get().csv());;
