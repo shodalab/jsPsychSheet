@@ -70,12 +70,12 @@ jsPsych.plugins['survey-multi-select'] = (function() {
         default:  'Continue',
         description: 'Label of the button.'
       },
-      required_message: {
-        type: jsPsych.plugins.parameterType.STRING,
-        pretty_name: 'Required message',
-        default: 'You must choose at least one response for this question',
-        description: 'Message that will be displayed if required question is not answered.'
-      }
+required_message: {
+          type: jsPsych.plugins.parameterType.STRING,
+          pretty_name: 'Required message',
+          default: 'チェックボックスにチェックを入れてください', /* チェックボックスにチェックせずに進もうとした場合に出てくるポップアップの文章 */
+          description: 'Message that will be displayed if required question is not answered.'
+        }
     }
   }
   plugin.trial = function(display_element, trial) {
@@ -87,7 +87,7 @@ jsPsych.plugins['survey-multi-select'] = (function() {
     }
 
     // inject CSS for trial
-    var cssstr = ".jspsych-survey-multi-select-question { margin-top: 2em; margin-bottom: 2em; text-align: left; }"+
+    var cssstr = ".jspsych-survey-multi-select-question { margin-top: 2em; margin-bottom: 2em; text-align: center; }"+
       ".jspsych-survey-multi-select-text span.required {color: darkred;}"+
       ".jspsych-survey-multi-select-horizontal .jspsych-survey-multi-select-text {  text-align: center;}"+
       ".jspsych-survey-multi-select-option { line-height: 2; }"+
